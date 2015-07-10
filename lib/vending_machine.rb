@@ -20,8 +20,17 @@ class VendingMachine
   end
 
   def insert(coin)
-    value = COIN_VALUES[COIN_WEIGHTS[coin.weight]]
-    return if value.nil?
-    @display = "%.2f" % value
+    return if value(coin).nil?
+    @display = formatted_value(coin)
+  end
+
+  private
+
+  def value(coin)
+    COIN_VALUES[COIN_WEIGHTS[coin.weight]]
+  end
+
+  def formatted_value(coin)
+    "%.2f" % value(coin)
   end
 end
