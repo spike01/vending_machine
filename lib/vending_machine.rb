@@ -20,6 +20,8 @@ class VendingMachine
   end
 
   def insert(coin)
-    @display = "%.2f" % COIN_VALUES[COIN_WEIGHTS[coin.weight]]
+    value = COIN_VALUES[COIN_WEIGHTS[coin.weight]]
+    return if value.nil?
+    @display = "%.2f" % value
   end
 end
