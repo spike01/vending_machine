@@ -13,6 +13,7 @@ class VendingMachine
 
   def initialize
     @credit = 0
+    @rejected_coins = []
   end
 
   def message
@@ -20,8 +21,15 @@ class VendingMachine
   end
 
   def insert(coin)
-    return if value(coin).nil?
+    if value(coin).nil?
+      @rejected_coins << coin
+      return
+    end
     @credit += value(coin)
+  end
+
+  def coin_return
+    @rejected_coins
   end
 
   private
