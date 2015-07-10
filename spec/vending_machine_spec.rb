@@ -17,6 +17,12 @@ describe VendingMachine do
         vending_machine.insert(nickel)
         expect(vending_machine.message).to eq("0.05")
       end
+
+      it "accepts dimes" do
+        dime = double(:coin)
+        vending_machine.insert(dime)
+        expect(vending_machine.message).to eq("0.10")
+      end
     end
   end
 end
