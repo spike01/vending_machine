@@ -1,4 +1,15 @@
 class VendingMachine
+  COIN_WEIGHTS = {
+    5 => :nickel,
+    2.26 => :dime,
+    5.67 => :quarter
+  }
+
+  COIN_VALUES = {
+    nickel: 0.05,
+    dime: 0.10,
+    quarter: 0.25
+  }
 
   def initialize
     @display = "INSERT COIN"
@@ -9,11 +20,6 @@ class VendingMachine
   end
 
   def insert(coin)
-    weights_to_values = {
-      5 => 0.05,
-      2.26 => 0.10,
-      5.67 => 0.25
-    }
-    @display = "%.2f" % weights_to_values[coin.weight]
+    @display = "%.2f" % COIN_VALUES[COIN_WEIGHTS[coin.weight]]
   end
 end
