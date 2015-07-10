@@ -10,36 +10,35 @@ class VendingMachine
     dime: 0.10,
     quarter: 0.25
   }
+  
+  NO_CREDIT_MESSAGE = "INSERT COIN"
+
+  attr_reader :coin_return
 
   def initialize
     @credit = 0
-    @rejected_coins = []
+    @coin_return = []
   end
 
   def message
-    formatted_value
+    formatted_credit
   end
 
   def insert(coin)
-    if value(coin).nil?
-      @rejected_coins << coin
-      return
-    end
+    @coin_return << coin if value(coin) == 0
     @credit += value(coin)
-  end
-
-  def coin_return
-    @rejected_coins
   end
 
   private
 
+  attr_reader :credit
+
   def value(coin)
-    COIN_VALUES[COIN_WEIGHTS[coin.weight]]
+    COIN_VALUES.fetch(COIN_WEIGHTS[coin.weight], 0)
   end
 
-  def formatted_value
-    return "INSERT COIN" if @credit == 0
-    "%.2f" % @credit
+  def formatted_credit
+    return NO_CREDIT_MESSAGE if credit == 0
+    "%.2f" % credit
   end
 end
