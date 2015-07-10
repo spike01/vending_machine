@@ -35,6 +35,14 @@ describe VendingMachine do
         vending_machine.insert(penny)
         expect(vending_machine.message).to eq("INSERT COIN")
       end
+
+      it "adds valid coins together" do
+        quarter = double(:coin, weight: 5.67)
+        dime = double(:coin, weight: 2.26)
+        vending_machine.insert(quarter)
+        vending_machine.insert(dime)
+        expect(vending_machine.message).to eq("0.35")
+      end
     end
   end
 end
