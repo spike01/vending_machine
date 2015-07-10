@@ -13,6 +13,7 @@ class VendingMachine
 
   def initialize
     @display = "INSERT COIN"
+    @credit = 0
   end
 
   def message
@@ -21,7 +22,8 @@ class VendingMachine
 
   def insert(coin)
     return if value(coin).nil?
-    @display = formatted_value(coin)
+    @credit += value(coin)
+    @display = formatted_value
   end
 
   private
@@ -30,7 +32,7 @@ class VendingMachine
     COIN_VALUES[COIN_WEIGHTS[coin.weight]]
   end
 
-  def formatted_value(coin)
-    "%.2f" % value(coin)
+  def formatted_value
+    "%.2f" % @credit
   end
 end
