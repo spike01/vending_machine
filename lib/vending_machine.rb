@@ -9,6 +9,10 @@ class VendingMachine
   end
 
   def insert(coin)
-    @display = "0.05"
+    weights_to_values = {
+      5 => 0.05,
+      2.26 => 0.10
+    }
+    @display = "%.2f" % weights_to_values[coin.weight]
   end
 end
