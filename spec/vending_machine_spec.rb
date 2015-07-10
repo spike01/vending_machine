@@ -29,6 +29,12 @@ describe VendingMachine do
         vending_machine.insert(quarter)
         expect(vending_machine.message).to eq("0.25")
       end
+
+      it "rejects any other coin" do
+        penny = double(:coin, weight: 2.5)
+        vending_machine.insert(penny)
+        expect(vending_machine.message).to eq("INSERT COIN")
+      end
     end
   end
 end
